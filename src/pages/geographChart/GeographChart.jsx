@@ -1,9 +1,9 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoData } from "./world_countries";
 import { data } from "./data";
 
-export default function GeographChart() {
+export default function GeographChart({ isDashboard = false }) {
   const theme = useTheme();
   const barTheme = {
     // background: "#ffffff",
@@ -115,22 +115,26 @@ export default function GeographChart() {
     },
   };
   return (
-    <Box
+    <Stack
       sx={{
-        height: "80vh",
-        borderTop: `1px solid ${theme.palette.text.primary}`,
-        borderBottom: `1px solid ${theme.palette.text.primary}`,
+        height: isDashboard ? "450px" : "80vh",
+        borderTop: isDashboard
+          ? null
+          : `1px solid ${theme.palette.text.primary}`,
+        borderBottom: isDashboard
+          ? null
+          : `1px solid ${theme.palette.text.primary}`,
       }}
       style={{
-        width: "calc(100% - 64x)",
-        marginLeft: "64px",
+        width: isDashboard ? "100%" : "calc(100% - 64x)",
+        marginLeft: isDashboard ? "0" : "64px",
       }}
     >
       <ResponsiveChoropleth
         theme={barTheme}
         data={data}
         features={geoData.features}
-        projectionScale={150}
+        projectionScale={isDashboard ? 100 : 150}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         colors="nivo"
         domain={[0, 1000000]}
@@ -197,32 +201,36 @@ export default function GeographChart() {
             id: "gradient",
           },
         ]}
-        legends={[
-          {
-            anchor: "bottom-left",
-            direction: "column",
-            justify: true,
-            translateX: 20,
-            translateY: -100,
-            itemsSpacing: 0,
-            itemWidth: 94,
-            itemHeight: 18,
-            itemDirection: "left-to-right",
-            itemTextColor: "#444444",
-            itemOpacity: 0.85,
-            symbolSize: 18,
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemTextColor: "#000000",
-                  itemOpacity: 1,
+        legends={
+          isDashboard
+            ? []
+            : [
+                {
+                  anchor: "bottom-left",
+                  direction: "column",
+                  justify: true,
+                  translateX: 20,
+                  translateY: -100,
+                  itemsSpacing: 0,
+                  itemWidth: 94,
+                  itemHeight: 18,
+                  itemDirection: "left-to-right",
+                  itemTextColor: "#444444",
+                  itemOpacity: 0.85,
+                  symbolSize: 18,
+                  effects: [
+                    {
+                      on: "hover",
+                      style: {
+                        itemTextColor: "#000000",
+                        itemOpacity: 1,
+                      },
+                    },
+                  ],
                 },
-              },
-            ],
-          },
-        ]}
+              ]
+        }
       />
-    </Box>
+    </Stack>
   );
 }

@@ -1,8 +1,9 @@
 import { ResponsivePie } from "@nivo/pie";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
-export default function PieChart() {
+export default function PieChart({ isDashboard = false }) {
   const theme = useTheme();
+  const mediaQuery = useMediaQuery("(min-width: 600px)");
   const data = [
     {
       id: "stylus",
@@ -148,17 +149,22 @@ export default function PieChart() {
 
   return (
     <Box
-      sx={{ height: "80vh" }}
+      sx={{ height: isDashboard ? "300px" : "80vh" }}
       style={{
-        width: "calc(100% - 64x)",
-        marginLeft: "64px",
+        width: isDashboard ? "100%" : "calc(100% - 64x)",
+        marginLeft: isDashboard ? "0" : "64px",
+        padding: isDashboard ? "5px" : "",
       }}
     >
       <ResponsivePie
         theme={barTheme}
         data={data}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        innerRadius={0.5}
+        margin={
+          isDashboard
+            ? { top: 10, right: 0, bottom: 0, left: 10 }
+            : { top: 40, right: 80, bottom: 80, left: 80 }
+        }
+        innerRadius={isDashboard ? 0.8 : 0.5}
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
@@ -167,6 +173,8 @@ export default function PieChart() {
           from: "color",
           modifiers: [["darker", 0.2]],
         }}
+        enableArcLinkLabels={isDashboard ? false : true}
+        enableArcLabels={isDashboard ? false : true}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor={theme.palette.text.primary}
         arcLinkLabelsThickness={2}
@@ -246,29 +254,33 @@ export default function PieChart() {
             id: "lines",
           },
         ]}
-        legends={[
-          {
-            anchor: "bottom",
-            direction: useMediaQuery("(min-width: 600px)") ? "row" : "column", // Use media query for direction
-            justify: false,
-            translateX: 0,
-            translateY: 56,
-            itemsSpacing: 5,
-            itemWidth: 100,
-            itemHeight: 18,
-            itemTextColor: theme.palette.text.primary,
-            itemDirection: "left-to-right",
-            itemOpacity: 1,
-            symbolSize: 18,
-            symbolShape: "circle",
-            effects: [
-              {
-                on: "hover",
-                style: { itemTextColor: theme.palette.text.primary },
-              },
-            ],
-          },
-        ]}
+        legends={
+          isDashboard
+            ? []
+            : [
+                {
+                  anchor: "bottom",
+                  direction: mediaQuery ? "row" : "column", // Use media query for direction
+                  justify: false,
+                  translateX: 0,
+                  translateY: 56,
+                  itemsSpacing: isDashboard ? 0 : 5,
+                  itemWidth: isDashboard ? 70 : 100,
+                  itemHeight: 18,
+                  itemTextColor: theme.palette.text.primary,
+                  itemDirection: "left-to-right",
+                  itemOpacity: 1,
+                  symbolSize: 18,
+                  symbolShape: "circle",
+                  effects: [
+                    {
+                      on: "hover",
+                      style: { itemTextColor: theme.palette.text.primary },
+                    },
+                  ],
+                },
+              ]
+        }
       />
     </Box>
   );

@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 
-export default function LineChart() {
+export default function LineChart({ isDashboard = false }) {
   const theme = useTheme();
   const barTheme = {
     // background: "#ffffff",
@@ -388,10 +388,10 @@ export default function LineChart() {
 
   return (
     <Box
-      sx={{ height: "80vh" }}
+      sx={{ height: isDashboard ? "300px" : "80vh" }}
       style={{
-        width: "calc(100% - 64x)",
-        marginLeft: "64px",
+        width: isDashboard ? "100%" : "calc(100% - 64x)",
+        marginLeft: isDashboard ? "0" : "64px",
       }}
     >
       <ResponsiveLine

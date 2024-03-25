@@ -1,7 +1,7 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { Box, useTheme } from "@mui/material";
 
-export default function BarChart() {
+export default function BarChart({isDashboard = false}) {
   const theme = useTheme();
   const data = [
     { year: 2019, Spain: 900, France: 1400, Germany: 1700 },
@@ -122,10 +122,10 @@ export default function BarChart() {
 
   return (
     <Box
-      sx={{ height: "80vh" }}
+      sx={{ height: isDashboard ? "450px" : "80vh" }}
       style={{
-        width: "calc(100% - 64x)",
-        marginLeft: "64px",
+        width: isDashboard ? "100%" : "calc(100% - 64x)",
+        marginLeft: isDashboard ? "0" : "64px",
       }}
     >
       <ResponsiveBar
