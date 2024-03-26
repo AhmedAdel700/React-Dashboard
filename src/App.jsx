@@ -20,6 +20,7 @@ import BarChart from "./pages/barChart/BarChart";
 import PieChart from "./pages/pieChart/PieChart";
 import LineChart from "./pages/lineChart/LineChart";
 import GeographChart from "./pages/geographChart/GeographChart";
+import NotFound from "./pages/notFound/NotFound";
 
 export default function App() {
   const storedTheme = localStorage.getItem("theme");
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/pie-chart" element={<PieChart />} />
         <Route path="/line-chart" element={<LineChart />} />
         <Route path="/geograph-chart" element={<GeographChart />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     )
   );

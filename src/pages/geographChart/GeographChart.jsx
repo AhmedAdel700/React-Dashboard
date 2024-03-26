@@ -2,6 +2,7 @@ import { Box, Stack, useTheme } from "@mui/material";
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoData } from "./world_countries";
 import { data } from "./data";
+import Title from "../../components/Title";
 
 export default function GeographChart({ isDashboard = false }) {
   const theme = useTheme();
@@ -130,6 +131,14 @@ export default function GeographChart({ isDashboard = false }) {
         marginLeft: isDashboard ? "0" : "64px",
       }}
     >
+      {!isDashboard && (
+        <Box margin="0 15px">
+          <Title
+            title={"Geograph Chart"}
+            subTile={"Have A Look At Geograph Chart"}
+          />
+        </Box>
+      )}
       <ResponsiveChoropleth
         theme={barTheme}
         data={data}

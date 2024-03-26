@@ -2,11 +2,13 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Stack,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import Title from "../../components/Title";
 
 export default function FQA() {
   const [expanded, setExpanded] = useState(false);
@@ -22,10 +24,14 @@ export default function FQA() {
         padding: "0 15px",
       }}
     >
+      <Box margin="0 20px 30px">
+        <Title title={"FAQ"} subTile={"Have A Look AT FAQ"} />
+      </Box>
+
       <Stack direction="column" gap="10px">
         <Accordion
-        // expanded => I Can Use This If I Wanted It Expaneded By Defualt
-        
+          // expanded => I Can Use This If I Wanted It Expaneded By Defualt
+
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
         >

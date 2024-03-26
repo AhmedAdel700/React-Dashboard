@@ -1,7 +1,8 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { Box, useTheme } from "@mui/material";
+import Title from "../../components/Title";
 
-export default function BarChart({isDashboard = false}) {
+export default function BarChart({ isDashboard = false }) {
   const theme = useTheme();
   const data = [
     { year: 2019, Spain: 900, France: 1400, Germany: 1700 },
@@ -128,6 +129,15 @@ export default function BarChart({isDashboard = false}) {
         marginLeft: isDashboard ? "0" : "64px",
       }}
     >
+      {!isDashboard && (
+        <Box margin="0 15px">
+          <Title
+            title={"Bar Chart"}
+            subTile={"Welcome To Your Bar Chart"}
+          />
+        </Box>
+      )}
+
       <ResponsiveBar
         theme={barTheme}
         data={data}

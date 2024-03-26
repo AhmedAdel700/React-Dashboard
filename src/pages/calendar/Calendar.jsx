@@ -7,6 +7,7 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import { useState } from "react";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import "./calendar.css";
+import Title from "../../components/Title";
 
 export default function Calendar() {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
@@ -55,6 +56,10 @@ export default function Calendar() {
       }}
     >
       <div className="demo-app">
+        <Box margin="0 20px 30px">
+          <Title title={"Calendar"} subTile={"Welcome To Your Calendar"} />
+        </Box>
+
         <Sidebar
           weekendsVisible={weekendsVisible}
           handleWeekendsToggle={handleWeekendsToggle}
@@ -101,24 +106,18 @@ function renderEventContent(eventInfo) {
 }
 
 function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
-  const isSmallScreen = useMediaQuery("(max-width: 600px)"); // Adjust breakpoint as needed
-
   return (
-    <Stack
-      direction={isSmallScreen ? "column" : "row"}
-      justifyContent={"space-between"}
-      padding={"0 10px"}
-      className="demo-app-sidebar"
-    >
+    <Stack padding={"0 10px"} className="demo-app-sidebar">
       <div className="demo-app-sidebar-section">
-        <h2>Instructions</h2>
+        <h2>All Events ({currentEvents.length})</h2>
         <ul className="calendar-ul">
-          <li className="calendar-li">
-            Select dates and you will be prompted to create a new event
-          </li>
-          <li className="calendar-li">Drag, drop, and resize events</li>
-          <li className="calendar-li">Click an event to delete it</li>
+          {currentEvents.map((event) => (
+            <SidebarEvent key={event.id} event={event} />
+          ))}
         </ul>
+      </div>
+
+      <div className="demo-app-sidebar-section">
         <div className="demo-app-sidebar-section">
           <label>
             <input
@@ -130,15 +129,6 @@ function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
             Toggle Weekends
           </label>
         </div>
-      </div>
-
-      <div className="demo-app-sidebar-section">
-        <h2>All Events ({currentEvents.length})</h2>
-        <ul className="calendar-ul">
-          {currentEvents.map((event) => (
-            <SidebarEvent key={event.id} event={event} />
-          ))}
-        </ul>
       </div>
     </Stack>
   );

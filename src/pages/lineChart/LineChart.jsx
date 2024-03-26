@@ -1,5 +1,6 @@
 import { Box, useTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
+import Title from "../../components/Title";
 
 export default function LineChart({ isDashboard = false }) {
   const theme = useTheme();
@@ -394,6 +395,14 @@ export default function LineChart({ isDashboard = false }) {
         marginLeft: isDashboard ? "0" : "64px",
       }}
     >
+      {!isDashboard && (
+        <Box margin="0 15px">
+          <Title
+            title={"Line Chart"}
+            subTile={"Have A Look At Your Line Chart"}
+          />
+        </Box>
+      )}
       <ResponsiveLine
         theme={barTheme}
         data={data}

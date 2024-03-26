@@ -1,5 +1,6 @@
 import { ResponsivePie } from "@nivo/pie";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
+import Title from "../../components/Title";
 
 export default function PieChart({ isDashboard = false }) {
   const theme = useTheme();
@@ -156,6 +157,14 @@ export default function PieChart({ isDashboard = false }) {
         padding: isDashboard ? "5px" : "",
       }}
     >
+      {!isDashboard && (
+        <Box margin="0 15px">
+          <Title
+            title={"Pie Chart"}
+            subTile={"Welcome To Your Pie Chart"}
+          />
+        </Box>
+      )}
       <ResponsivePie
         theme={barTheme}
         data={data}
