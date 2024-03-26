@@ -1,17 +1,22 @@
 import { GridToolbar } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
 import { rows, columns } from "../../data";
+import Title from "../../components/Title";
+import { Box } from "@mui/material";
 
 export default function Contacts() {
-
   return (
-    <>
+    <Box
+      sx={{ width: "calc(100% - 64x)", marginLeft: "64px",}}
+    >
+      <Box margin="0 15px">
+        <Title title={"Contact"} subTile={"List Of Contacts For Future Reference"} />
+      </Box>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
-          width: "calc(100% - 64x)",
-          marginLeft: "64px",
+          margin: "10px 0 0 0",
         }}
       >
         <div
@@ -29,6 +34,6 @@ export default function Contacts() {
           />
         </div>
       </div>
-    </>
+    </Box>
   );
 }

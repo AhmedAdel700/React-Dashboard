@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./header.css";
 
 // MUI Componantes
 import { alpha, styled, useTheme } from "@mui/material/styles";
@@ -23,6 +22,7 @@ import {
   Menu,
   MenuItem,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 
@@ -366,36 +366,38 @@ export default function MiniDrawer({ mode, setMode }) {
           {drawerArray1.map((icon) => (
             <ListItem key={icon.text} disablePadding sx={{ display: "block" }}>
               <Link to={icon.path}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  style={{
-                    backgroundColor:
-                      location.pathname === icon.path
-                        ? mode === "dark"
-                          ? "#546e7a"
-                          : "#b0bec5"
-                        : null,
-                  }}
-                >
-                  <ListItemIcon
+                <Tooltip title={open ? null : icon.text} placement={"left"}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                    style={{
+                      backgroundColor:
+                        location.pathname === icon.path
+                          ? mode === "dark"
+                            ? "#546e7a"
+                            : "#b0bec5"
+                          : null,
                     }}
                   >
-                    {icon.icon}
-                  </ListItemIcon>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {icon.icon}
+                    </ListItemIcon>
 
-                  <ListItemText
-                    primary={icon.text}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
+                    <ListItemText
+                      primary={icon.text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </Tooltip>
               </Link>
             </ListItem>
           ))}
@@ -407,35 +409,37 @@ export default function MiniDrawer({ mode, setMode }) {
           {drawerArray2.map((icon) => (
             <ListItem key={icon.text} disablePadding sx={{ display: "block" }}>
               <Link to={icon.path}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  style={{
-                    backgroundColor:
-                      location.pathname === icon.path
-                        ? mode === "dark"
-                          ? "#546e7a"
-                          : "#b0bec5"
-                        : null,
-                  }}
-                >
-                  <ListItemIcon
+                <Tooltip title={open ? null : icon.text} placement={"left"}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                    style={{
+                      backgroundColor:
+                        location.pathname === icon.path
+                          ? mode === "dark"
+                            ? "#546e7a"
+                            : "#b0bec5"
+                          : null,
                     }}
                   >
-                    {icon.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={icon.text}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {icon.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={icon.text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </Tooltip>
               </Link>
             </ListItem>
           ))}
@@ -445,35 +449,37 @@ export default function MiniDrawer({ mode, setMode }) {
           {drawerArray3.map((icon) => (
             <ListItem key={icon.text} disablePadding sx={{ display: "block" }}>
               <Link to={icon.path}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  style={{
-                    backgroundColor:
-                      location.pathname === icon.path
-                        ? mode === "dark"
-                          ? "#546e7a"
-                          : "#b0bec5"
-                        : null,
-                  }}
-                >
-                  <ListItemIcon
+                <Tooltip title={open ? null : icon.text} placement={"left"}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                    style={{
+                      backgroundColor:
+                        location.pathname === icon.path
+                          ? mode === "dark"
+                            ? "#546e7a"
+                            : "#b0bec5"
+                          : null,
                     }}
                   >
-                    {icon.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={icon.text}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {icon.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={icon.text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </Tooltip>
               </Link>
             </ListItem>
           ))}

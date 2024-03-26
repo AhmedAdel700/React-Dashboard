@@ -6,6 +6,7 @@ import {
   LockOpenOutlined,
   SecurityOutlined,
 } from "@mui/icons-material";
+import Title from "../../components/Title";
 
 export default function ManageTeam() {
   const theme = useTheme();
@@ -165,23 +166,27 @@ export default function ManageTeam() {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "calc(100% - 64x)",
-        marginLeft: "64px",
-      }}
-    >
+    <Box sx={{ width: "calc(100% - 64x)", marginLeft: "64px" }}>
+      <Box margin="0 15px">
+        <Title title={"Team"} subTile={"Managing The Team Members"} />
+      </Box>
       <div
         style={{
-          height: 600,
-          width: "100%",
-          margin: " -0.25rem 1.2rem 0.5rem",
+          display: "flex",
+          justifyContent: "center",
+          margin: "10px 0 0 0",
         }}
       >
-        <DataGrid rows={rows} columns={columns} sx={{ margin: "auto" }} />
+        <div
+          style={{
+            height: 600,
+            width: "100%",
+            margin: " -0.25rem 1.2rem 0.5rem",
+          }}
+        >
+          <DataGrid rows={rows} columns={columns} sx={{ margin: "auto" }} />
+        </div>
       </div>
-    </div>
+    </Box>
   );
 }

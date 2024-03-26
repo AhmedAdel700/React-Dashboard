@@ -5,8 +5,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import { useState } from "react";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import "./calendar.css";
-import { Box, Paper} from "@mui/material";
 
 export default function Calendar() {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
@@ -101,27 +101,37 @@ function renderEventContent(eventInfo) {
 }
 
 function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
+  const isSmallScreen = useMediaQuery("(max-width: 600px)"); // Adjust breakpoint as needed
+
   return (
-    <Paper className="demo-app-sidebar">
+    <Stack
+      direction={isSmallScreen ? "column" : "row"}
+      justifyContent={"space-between"}
+      padding={"0 10px"}
+      className="demo-app-sidebar"
+    >
       <div className="demo-app-sidebar-section">
         <h2>Instructions</h2>
         <ul className="calendar-ul">
-          <li className="calendar-li">Select dates and you will be prompted to create a new event</li>
+          <li className="calendar-li">
+            Select dates and you will be prompted to create a new event
+          </li>
           <li className="calendar-li">Drag, drop, and resize events</li>
           <li className="calendar-li">Click an event to delete it</li>
         </ul>
+        <div className="demo-app-sidebar-section">
+          <label>
+            <input
+              className="calendar-checkbox"
+              type="checkbox"
+              checked={weekendsVisible}
+              onChange={handleWeekendsToggle}
+            ></input>
+            Toggle Weekends
+          </label>
+        </div>
       </div>
-      <div className="demo-app-sidebar-section">
-        <label>
-          <input
-          className="calendar-checkbox"
-            type="checkbox"
-            checked={weekendsVisible}
-            onChange={handleWeekendsToggle}
-          ></input>
-          Toggle Weekends
-        </label>
-      </div>
+
       <div className="demo-app-sidebar-section">
         <h2>All Events ({currentEvents.length})</h2>
         <ul className="calendar-ul">
@@ -130,7 +140,7 @@ function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
           ))}
         </ul>
       </div>
-    </Paper>
+    </Stack>
   );
 }
 
